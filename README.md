@@ -62,3 +62,13 @@ Aceite futuro: verificar assinatura e tokenizer, calibrar o limiar em split pró
 - **Portfólio Completo:** [https://beatrizorlandi.github.io](https://beatrizorlandi.github.io)
 - **Estudo de Caso no Site:** [https://beatrizorlandi.github.io/projetos/avaliador-bem-kaggle.html](https://beatrizorlandi.github.io/projetos/avaliador-bem-kaggle.html)
 - **Planejamento Técnico no Site:** [https://beatrizorlandi.github.io/documentacao/avaliador-bem-kaggle.html](https://beatrizorlandi.github.io/documentacao/avaliador-bem-kaggle.html)
+
+## Execução Validada no Databricks (05/11/2026)
+
+- **Notebook executado:** `01_avaliador_equivalencia_respostas.py`
+- **Tabela Delta:** `workspace.estudos_ai.aurora_avaliador_equivalencia` (30 triplas em inglês: 15 calibração, 15 teste fechado)
+- **Resultados no Teste Fechado (`limiar calibrado = 0,78`):**
+  - `Exact Match`: `F1 = 0,2500`
+  - `Token-F1`: `F1 = 0,1429`
+  - `Cosseno bruto sem calibração` (`databricks-qwen3-embedding-0-6b`): `7 falsos equivalentes críticos` em alterações numéricas, negações e trocas de entidade.
+  - `Adaptador BEM Calibrado` (Embeddings Qwen3 + Guardrails estruturais): **`F1 = 0,9231` (92,3%)**, **`Precisão = 1,0000` (100%)**, `Paraphrase Recall = 83,3%` e **`0 falsos equivalentes críticos`**.
